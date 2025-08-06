@@ -1,0 +1,67 @@
+{% extends "inicio/encabezado.html" %}
+
+{% block titulo %} Comentarios {% endblock %}
+
+{% block imagen %} 
+    {% load static %}
+    {% static 'inicio/images/home.png' %}
+{% endblock %}
+
+{% block texto %} Comentarios {% endblock %}
+
+{% block contenido %}
+
+<!--Encabezdo -->
+<div class="page-header">
+	<div class="page-title">
+		<h3>lista de cometarios
+		</h3>
+	</div>
+</div>
+<!-- /Encabezado-->
+
+<!-- Navegación -->
+{% block nav %}
+<div class="breadcrumb-line">
+	<ul class="breadcrumb">
+		<a href="{%url 'Comentarios'%}">
+			{%if request.path == ' / ' %}
+			Comentarios
+			{%else%}
+			Comentarios {{request.path}}
+			{% endif %}
+		</a>
+	</ul>
+</div>
+{% endblock %}
+<!-- /Navegación -->
+
+<!-- Tabla de alumnos -->
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>Usuario</th>
+			<th>Mensaje</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		{% for comentario in comentarios %}
+		<tr>
+			<td class="text-semibold">{{comentario.usuario}}</td>
+			<td class="muted">{{comentario.mensaje}}</td>
+			<td class"text-center">
+				<a href="{%url 'Eliminar' comentario.id%}">Eliminar</a>
+			</td>
+			<td class"text-center">
+				<a href="{%url 'ConsultaIndividual' comentario.id%}">Editar</a>
+			</td>
+		<tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+{% endblock %}

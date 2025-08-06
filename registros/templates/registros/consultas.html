@@ -1,0 +1,70 @@
+{% extends "inicio/encabezado.html" %}
+
+{% block titulo %} Consultas {% endblock %}
+
+{% block imagen %} 
+    {% load static %}
+    {% static 'inicio/images/home.png' %}
+{% endblock %}
+
+{% block texto %} Consultas {% endblock %}
+
+{% block span %} DSM {% endblock %}
+
+{% block contenido %}
+
+<!--Encabezdo -->
+<div class="page-header">
+	<div class="page-title">
+		<h3>Alumnos
+			<small>Lista de alumnos</small>
+		</h3>
+	</div>
+</div>
+<!-- /Encabezado-->
+
+<!-- Navegación -->
+{% block nav %}
+<div class="breadcrumb-line">
+	<ul class="breadcrumb">
+		<a href="{%url 'Principal'%}">
+			{%if request.path == ' / ' %}
+			Principal
+			{%else%}
+			Principal {{request.path}}
+			{% endif %}
+		</a>
+	</ul>
+</div>
+{% endblock %}
+<!-- /Navegación -->
+
+<!-- Tabla de alumnos -->
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>Foto</th>
+			<th>Matrícula</th>
+			<th>Nombre</th>
+			<th>Carrera</th>
+			<th>Turno</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		{% for alumno in alumnos %}
+		<tr>
+			<td class="text-center">
+				<img src="{{alumno.imagen.url}}" alt="" class"img-media" height="60px" width="60px">
+			</td>
+			<td class="text-semibold">{{alumno.matricula}}</td>
+			<td class="muted">{{alumno.nombre}}</td>
+			<td class="muted">{{alumno.carrera}}</td>
+			<td class="muted">{{alumno.turno}}</td>
+		<tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+{% endblock %}

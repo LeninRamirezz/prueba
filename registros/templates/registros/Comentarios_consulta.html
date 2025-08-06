@@ -1,0 +1,64 @@
+{% extends "inicio/encabezado.html" %}
+
+{% block titulo %} Principal {% endblock %}
+
+{% block imagen %} 
+    {% load static %}
+    {% static 'inicio/images/home.png' %}
+{% endblock %}
+
+{% block texto %} Principal {% endblock %}
+
+{% block span %} DSM {% endblock %}
+
+{% block contenido %}
+
+<!--Encabezdo -->
+<div class="page-header">
+	<div class="page-title">
+		<h3>Alumnos
+			<small>Lista de alumnos</small>
+		</h3>
+	</div>
+</div>
+<!-- /Encabezado-->
+
+<!-- Navegación -->
+{% block nav %}
+<div class="breadcrumb-line">
+	<ul class="breadcrumb">
+		<a href="{%url 'Principal'%}">
+			{%if request.path == ' / ' %}
+			Principal
+			{%else%}
+			Principal {{request.path}}
+			{% endif %}
+		</a>
+	</ul>
+</div>
+{% endblock %}
+<!-- /Navegación -->
+
+<!-- Tabla de alumnos -->
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>Usuario</th>
+			<th>Comentario</th>
+			<th>Creado</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		{% for comentario in comentarios %}
+		<tr>
+			<td class="muted">{{comentario.usuario}}</td>
+			<td class="muted">{{comentario.mensaje}}</td>
+			<td class="muted">{{comentario.created}}</td>
+		<tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+{% endblock %}
